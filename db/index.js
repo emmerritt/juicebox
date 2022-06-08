@@ -28,6 +28,15 @@ async function getAllPosts() {
   }
 }
 
+async function getAllTags() {
+  const { rows } = await client.query(
+    `SELECT id, name 
+    FROM tags;
+  `);
+
+  return rows;
+}
+
 async function getPostsByUser(userId) {
   try {
     const { rows: postIds } = await client.query(`
@@ -297,6 +306,7 @@ module.exports = {
   createUser,
   updateUser,
   getAllPosts,
+  getAllTags,
   getPostsByUser,
   getUserById,
   createPost,
